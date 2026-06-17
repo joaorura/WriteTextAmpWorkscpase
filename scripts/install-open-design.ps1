@@ -41,6 +41,10 @@ param(
 $ErrorActionPreference = 'Stop'
 $ProgressPreference = 'SilentlyContinue'
 
+# Define workspace paths
+$WorkspaceRoot = Split-Path $PSScriptRoot -Parent
+$scriptsDir = $PSScriptRoot
+
 # Cores para output
 $Colors = @{
     Success = 'Green'
@@ -200,18 +204,64 @@ if ($windowsAsset.name -match '\.zip$') {
 Write-Info "Limpando arquivos temporários..."
 Remove-Item -Path $tempDir -Recurse -Force -ErrorAction SilentlyContinue
 
-# Cria script de inicialização
+# Cria script de inicialização com carregamento de credenciais
 Write-Step "Criando Scripts de Inicialização"
 
 $startScript = Join-Path $InstallDir 'start.ps1'
 @"
 #!/usr/bin/env pwsh
 # Script de inicialização do Open Design
+# Carrega credenciais do workspace e inicia o Open Design
 
 Write-Host "🚀 Iniciando Open Design..." -ForegroundColor Cyan
+
+# ═══ CARREGA CREDENCIAIS DO WORKSPACE ═══
+`$workspaceEnv = Join-Path "$WorkspaceRoot" ".env"
+if (Test-Path `$workspaceEnv) {
+    Write-Host "📋 Carregando credenciais do workspace..." -ForegroundColor Gray
+    
+    # Lê o .env e exporta como variáveis de ambiente
+    Get-Content `$workspaceEnv | ForEach-Object {
+        `$line = `$_.Trim()
+        if (`$line -and -not `$line.StartsWith('#') -and `$line.Contains('=')) {
+            `$parts = `$line -split '=', 2
+            if (`$parts.Count -eq 2) {
+                `$key = `$parts[0].Trim()
+                `$value = `$parts[1].Trim()
+                if (`$value -and `$value -ne '') {
+                    Set-Item -Path "env:`$key" -Value `$value
+                    Write-Host "   ✓ `$key" -ForegroundColor Green
+                }
+            }
+        }
+    }
+    Write-Host ""
+} else {
+    Write-Host "⚠️  .env não encontrado. Configure as credenciais primeiro." -ForegroundColor Yellow
+    Write-Host "   Execute: bootstrap.ps1 ou configure manualmente .env" -ForegroundColor Gray
+}
+
+# ═══ MOSTRA INFORMAÇÕES ═══
 Write-Host "🌐 Acesse: http://localhost:3333" -ForegroundColor Green
+Write-Host "" -NoNewline
+
+# ═══ MOSTRA STATUS DAS CREDENCIAIS ═══
+if (`$env:FLUX_API_KEY) {
+    Write-Host "✅ FLUX API Key: configurada" -ForegroundColor Green
+    Write-Host "   Modelos: flux-1.1-pro, flux-1.1-pro-ultra, flux-1.1-dev" -ForegroundColor Gray
+} else {
+    Write-Host "⚠️  FLUX API Key: não configurada (imagens AI indisponíveis)" -ForegroundColor Yellow
+}
+
+if (`$env:PICTIFY_API_KEY) {
+    Write-Host "✅ Pictify API Key: configurada" -ForegroundColor Green
+} else {
+    Write-Host "⚠️  Pictify API Key: não configurada" -ForegroundColor Yellow
+}
+
 Write-Host "`nPressione Ctrl+C para parar`n" -ForegroundColor Yellow
 
+# ═══ INICIA O OPEN DESIGN ═══
 # Verifica se é executável ou diretório
 `$exePath = Get-ChildItem -Path "$InstallDir" -Filter "*.exe" -Recurse | Select-Object -First 1
 
@@ -233,6 +283,36 @@ if (`$exePath) {
 "@ | Out-File -FilePath $startScript -Encoding UTF8
 
 Write-Success "Script de inicialização criado: $startScript"
+Write-Info "O script carrega automaticamente as credenciais do .env do workspace"
+
+# Cria script de sincronização de credenciais
+$syncScript = Join-Path $scriptsDir 'sync-open-design-env.ps1'
+@"
+#!/usr/bin/env pwsh
+# Sincroniza credenciais do workspace para o Open Design
+
+`$workspaceRoot = Split-Path `$PSScriptRoot -Parent | Split-Path -Parent
+`$envFile = Join-Path `$workspaceRoot ".env"
+`$odEnvFile = Join-Path `$workspaceRoot "tools\open-design\.env"
+
+if (-not (Test-Path `$envFile)) {
+    Write-Error ".env não encontrado em `$envFile"
+    exit 1
+}
+
+Write-Host "🔄 Sincronizando credenciais para Open Design..." -ForegroundColor Cyan
+
+# Copia o .env para o diretório do Open Design
+Copy-Item -Path `$envFile -Destination `$odEnvFile -Force
+Write-Success "Credenciais sincronizadas: `$odEnvFile"
+
+# Mostra quais credenciais foram sincronizadas
+Write-Host "`nCredenciais disponíveis para Open Design:" -ForegroundColor Gray
+Get-Content `$envFile | Where-Object { `$_ -match 'API_KEY=' -and `$_ -notmatch '^#' -and `$_ -notmatch 'your_api_key_here' -and `$_ -notmatch '^$' } | ForEach-Object {
+    `$key = (`$_ -split '=')[0].Trim()
+    Write-Host "  ✅ `$key" -ForegroundColor Green
+}
+"@ | Out-File -FilePath $syncScript -Encoding UTF8
 
 # Cria arquivo de configuração de modelos
 Write-Step "Configurando Modelos de Imagem"
