@@ -168,7 +168,7 @@ function Install-OpenCode {
     }
     
     Write-Info "Instalando OpenCode CLI..."
-    npm install -g opencode
+    npm install -g opencode-ai
     
     if (Test-Command 'opencode') {
         $version = opencode --version
