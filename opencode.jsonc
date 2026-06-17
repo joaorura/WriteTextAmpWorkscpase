@@ -151,24 +151,4 @@
     }
   },
 
-  // ─── Configurações de Orquestração ───
-  
-  "orchestration": {
-    "defaultOrchestrator": "marketing-orchestrator",
-    "subagents": [
-      "content-creator",
-      "visual-designer",
-      "social-media-manager",
-      "document-generator",
-      "email-marketing"
-    ],
-    "workflowSkills": [
-      "brainstorming-content",
-      "writing-content-plan",
-      "executing-content-plan",
-      "reviewing-content",
-      "finishing-content-project"
-    ],
-    "decisionSkill": "decision-router"
-  }
 }
