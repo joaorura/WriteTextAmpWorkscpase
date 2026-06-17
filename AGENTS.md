@@ -1,57 +1,34 @@
-# WriteTextAmp Workspace - Marketing Content Studio
+# Marketing Content Studio — Workspace de Marketing com Orquestração Inteligente
 
-**Workspace completo de marketing com orquestração inteligente de agents, subagents e skills.**
+> **CLIs Suportados:** OpenCode • Claude Code • Gemini CLI • Codex CLI • Antigravity
 
-> **CLIs Suportados:** OpenCode • Claude Code • Gemini CLI • Codex CLI • Antigravity  
-> Leia `docs/MULTI-CLI-SUPPORT.md` para instruções de cada CLI.
+## 🎯 Visão Geral
 
----
+Este é um workspace completo de marketing com orquestração inteligente de agents, subagents e skills. Projetado para gerentes de marketing que precisam produzir conteúdo profissional de forma ágil e consistente.
 
-## 🚀 Início Rápido
+## 🚀 Início Rápido (3 Passos)
 
-### Passo 1: Execute o Bootstrap
+### 1. Instale o Workspace
 
-O bootstrap configura automaticamente todo o workspace:
+```bash
+# Clone o repositório
+git clone <repo-url>
+cd WriteTextAmpWorkscpase
 
-1. **Abra o PowerShell como Administrador**
-   - Clique com botão direito no PowerShell
-   - Selecione "Executar como Administrador"
+# Execute a GUI de configuração
+python scripts/configure-gui.py
+```
 
-2. **Navegue até o diretório do workspace**
-   ```powershell
-   cd D:\GitHub\WriteTextAmpWorkscpase
-   ```
+A GUI vai guiar você através de:
+- Seleção de MCPs (ferramentas)
+- Preenchimento de API keys
+- Configuração de preferências
+- Instalação automática de dependências
 
-3. **Execute o script de bootstrap**
-   ```powershell
-   .\bootstrap.ps1
-   ```
+### 2. Crie Seu Primeiro Projeto
 
-4. **Siga as instruções na tela**
-   - O script vai verificar e instalar Node.js, Python, Git
-   - Vai instalar OpenCode CLI
-   - Vai abrir a GUI de configuração
-   - Selecione quais MCPs quer usar
-   - Preencha API keys quando necessário
-   - Clique em "Instalar e Finalizar"
-
-### Passo 2: Configure as Contas e API Keys
-
-**⚠️ IMPORTANTE:** Antes de continuar, leia [docs/COSTS-AND-ACCOUNTS.md](docs/COSTS-AND-ACCOUNTS.md) para entender:
-- Quais serviços precisam de conta
-- O que é gratuito vs pago
-- Limites do free tier
-- Como criar contas e obter API keys
-
-**Resumo rápido:**
-- ✅ **100% Gratuitos (sem conta):** document-generator, pdf-toolkit, Docling, Open Design
-- ⚠️ **Free Tier (precisa conta):** FLUX, Pictify, ChangeImageTo, Chompute, Nano Banana, Brave Search, SEOcrawl, OpenSEO
-- ✅ **Gratuitos com OAuth:** LinkedIn, Instagram, Facebook, Google Drive, Slack
-
-### Passo 3: Crie Seu Primeiro Projeto
-
-```powershell
-# Copie o template
+```bash
+# Copie o template de projeto
 Copy-Item -Path "projetos\_modelo" -Destination "projetos\meu-primeiro-projeto" -Recurse
 
 # Entre no diretório do projeto
@@ -61,7 +38,7 @@ cd projetos\meu-primeiro-projeto
 opencode
 ```
 
-### Passo 4: Comece a Criar Conteúdo
+### 3. Comece a Criar Conteúdo
 
 ```
 @marketing-orchestrator "Preciso de uma campanha completa de lançamento para o Produto X"
@@ -85,18 +62,14 @@ O orquestrador automaticamente:
 | **README.md** (este) | Visão geral e início rápido | Sempre |
 | **QUICKSTART.md** | Guia rápido de 5 minutos | Primeira vez |
 | **WORKSPACE.md** | Guia completo de uso | Uso diário |
-| **docs/COSTS-AND-ACCOUNTS.md** | 💰 Custos e contas necessárias | Antes de configurar |
 | **docs/ORCHESTRATOR-GUIDE.md** | Como usar o orquestrador | Projetos complexos |
 | **docs/USER-GUIDE.md** | Guia completo do usuário | Referência |
-| **docs/MCP-CONFIGURATION.md** | Configuração de MCPs e serviços | Configurar ferramentas |
-| **docs/DOCLING-GUIDE.md** | Guia do Docling | Processar documentos |
-| **docs/OPEN-DESIGN-GUIDE.md** | Guia do Open Design | Criar visuais |
 
 ### Para Desenvolvedores
 
 | Documento | Descrição |
 |-----------|-----------|
-| **AGENTS.md** | Informações técnicas do workspace |
+| **AGENTS.md** (este) | Informações técnicas do workspace |
 | **docs/ARCHITECTURE.md** | Arquitetura do sistema |
 | **docs/MCP-INTEGRATION.md** | Como integrar novos MCPs |
 
@@ -108,14 +81,13 @@ O orquestrador automaticamente:
 WriteTextAmpWorkscpase/
 │
 ├── 📄 README.md                          # Visão geral (este arquivo)
-├── 📄 AGENTS.md                          # Informações técnicas
+├── 📄 AGENTS.md                          # Informações técnicas (este arquivo)
 ├── 📄 WORKSPACE.md                       # Guia completo de uso
 ├── 📄 QUICKSTART.md                      # Início rápido
-├── 📄 bootstrap.ps1                      # ⭐ Script de bootstrap
 ├── 📄 opencode.jsonc                     # Configuração de MCPs
 ├── 📄 .env                               # API keys (gerado pela GUI)
 ├── 📄 .env.template                      # Template de configuração
-├── 📄 .gitignore                         # Ignora arquivos desnecessários
+├── 📄 .gitignore                         # Ignora .env e dados sensíveis
 │
 ├── 📁 docs/
 │   ├── 📄 ORCHESTRATOR-GUIDE.md          # Guia do orquestrador
@@ -126,13 +98,12 @@ WriteTextAmpWorkscpase/
 ├── 📁 .opencode/
 │   ├── 📁 instructions/                  # Instruções obrigatórias
 │   │   ├── 📄 using-marketing-workspace.instructions.md  # ⭐ Inicial
-│   │   ├── 📄 bootstrap-guide.instructions.md  # ⭐ Guia para IA
 │   │   ├── 📄 content-to-visual.instructions.md
 │   │   ├── 📄 copywriting-framework.instructions.md
 │   │   ├── 📄 brand-voice.instructions.md
 │   │   ├── 📄 content-formats.instructions.md
 │   │   ├── 📄 visual-marketing.instructions.md
-│   │   └── 📄 git-workflow.instructions.md
+│   │   └── 📄 git-workflow.instructions.md  # ⭐ Git seguro
 │   │
 │   ├── 📁 agents/
 │   │   ├── 📄 marketing-orchestrator.agent.md
@@ -211,72 +182,37 @@ WriteTextAmpWorkscpase/
 
 ---
 
-## 🛠️ MCPs e Serviços
+## 🛠️ MCPs Disponíveis
 
-### Configuração Automática
+### Geração de Imagem
+- **FLUX** (Black Forest Labs) — imagens AI de alta qualidade
+- **Pictify** — templates HTML para imagens
+- **Open Design** — prototipagem visual local
 
-O `bootstrap.ps1` configura automaticamente todos os MCPs:
+### Edição de Imagem
+- **ChangeImageTo** — 16 ferramentas (resize, crop, upscale, denoise, OCR)
+- **Chompute BG Remover** — remoção de fundo
+- **Nano Banana** — edição com Google Gemini
 
-- ✅ **Docling** - Processamento de documentos (inicia automaticamente no login)
-- ✅ **Open Design** - Prototipagem visual local (com modelos de imagem AI)
-- ✅ **FLUX** - Geração de imagens AI (Black Forest Labs)
-- ✅ **Pictify** - Templates HTML para imagens
-- ✅ **ChangeImageTo** - 16 ferramentas de edição de imagem
-- ✅ **Chompute** - Remoção de fundo automática
-- ✅ **Nano Banana** - Edição com Google Gemini
+### Documentos
+- **document-generator** — Word + PDF profissional
+- **pdf-toolkit** — PDF avançado (merge, split, encrypt, QR)
 
-### Configuração Manual
+### Redes Sociais
+- **LinkedIn** — postar e gerenciar conteúdo
+- **Twitter/X** — threads e posts
+- **Instagram** — posts e stories
+- **Facebook** — posts e páginas
 
-Consulte `docs/MCP-CONFIGURATION.md` para:
-- Configurar API keys
-- Inicialização manual de serviços
-- Troubleshooting
-- Verificação de status
+### Produtividade
+- **Notion** — documentação e organização
+- **Google Drive** — armazenamento
+- **Slack** — comunicação e aprovações
 
-### Docling (Inicialização Automática)
-
-O Docling é configurado para iniciar automaticamente no login do Windows:
-
-```powershell
-# Verificar status
-.\scripts\setup-docling-startup.ps1 -Status
-
-# Remover inicialização automática
-.\scripts\setup-docling-startup.ps1 -Remove
-
-# Iniciar manualmente
-python scripts\start-docling-server.py
-```
-
-**Acesso:**
-- API: http://localhost:8000
-- Documentação: http://localhost:8000/docs
-- Health: http://localhost:8000/health
-
-### Open Design
-
-Instalado automaticamente em `tools/open-design/` a partir da **última release do GitHub**:
-
-```powershell
-# Iniciar
-cd tools\open-design
-.\start.ps1
-```
-
-**Acesso:** http://localhost:3000
-
-**Instalação:**
-- O script `install-open-design.ps1` consulta a API do GitHub
-- Baixa a última release disponível (asset para Windows)
-- Extrai e configura localmente
-- Configura modelos de imagem AI
-
-**Modelos configurados:**
-- FLUX (flux-1.1-pro, flux-1.1-pro-ultra, flux-1.1-dev)
-- Pictify (templates HTML)
-- ChangeImageTo (edição)
-- Chompute (remoção de fundo)
-- Nano Banana (edição com Gemini)
+### Pesquisa e SEO
+- **Brave Search** — pesquisa web
+- **SEOcrawl** — análise SEO
+- **OpenSEO** — dados de keywords
 
 ---
 
@@ -355,7 +291,7 @@ O sistema segue `git-workflow.instructions.md`:
 - **1 Orchestrator** agent
 - **5 Subagents** especializados
 - **13 Skills** (8 workflow + 5 produção)
-- **8 Instructions** (diretrizes)
+- **7 Instructions** (diretrizes)
 - **4 Templates** reutilizáveis
 - **3 Scripts** de setup (PowerShell + Python CLI + Python GUI)
 - **20+ MCPs** configurados
@@ -364,28 +300,14 @@ O sistema segue `git-workflow.instructions.md`:
 
 ## 🚨 Troubleshooting
 
-### Bootstrap falhou
-
-```powershell
-# Verifique se está como Administrador
-# Clique com botão direito no PowerShell → "Executar como Administrador"
-
-# Tente novamente com Force
-.\bootstrap.ps1 -Force
-```
-
 ### GUI não abre
 
-```powershell
-# Instale Python
-# Download: https://www.python.org/downloads/
+```bash
+# Instale dependências
+pip install tkinter
 
-# Ou use modo sem GUI
-.\bootstrap.ps1 -SkipGUI
-
-# Depois configure .env manualmente
-Copy-Item .env.template .env
-notepad .env
+# Execute novamente
+python scripts/configure-gui.py
 ```
 
 ### MCP não funciona

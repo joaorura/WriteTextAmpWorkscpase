@@ -1,0 +1,53 @@
+# ═══════════════════════════════════════════════════════════════
+# WriteTextAmp Workspace — Git Ignore (Local)
+# ═══════════════════════════════════════════════════════════════
+# Este workspace é 100% LOCAL. Não há push para repositórios remotos.
+# O git é usado apenas para backup local e versionamento.
+# ═══════════════════════════════════════════════════════════════
+
+# ─── Arquivos Temporários e Cache ───
+node_modules/
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv
+
+# ─── Logs ───
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# ─── IDE e Editores ───
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# ─── Backups Antigos ───
+backups/*.tar.gz
+backups/*.zip
+
+# ─── Arquivos de Sistema ───
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ─── Opcional: Se não quiser versionar .env ───
+# Descomente a linha abaixo se preferir não commitar .env
+# .env
+
+# ─── Opcional: Se não quiser versionar output de projetos ───
+# Descomente as linhas abaixo se preferir não commitar entregas
+# projetos/*/output/
+# projetos/*/.orchestrator/
+# projetos/*/.brainstorming/
+# projetos/*/.planos/

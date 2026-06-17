@@ -1,0 +1,174 @@
+{
+  // ═══════════════════════════════════════════════════════════════
+  // WriteTextAmp Workspace — Marketing Content Studio
+  // Configuração completa de MCPs para orquestração inteligente
+  // ═══════════════════════════════════════════════════════════════
+  "$schema": "https://opencode.ai/config.json",
+
+  "mcp": {
+    // ─── Documentos (Sempre Habilitados) ───
+    
+    "document-generator": {
+      "type": "local",
+      "command": "npx",
+      "args": ["--yes", "document-generator-mcp@latest"],
+      "enabled": true,
+      "description": "Geração de documentos Word e PDF profissionais"
+    },
+
+    "pdf-toolkit": {
+      "type": "local",
+      "command": "npx",
+      "args": ["-y", "@aryanbv/pdf-toolkit-mcp"],
+      "enabled": true,
+      "description": "PDF avançado: merge, split, encrypt, QR codes, formulários"
+    },
+
+    // ─── Geração de Imagem AI ───
+
+    "flux": {
+      "type": "remote",
+      "url": "https://mcp.bfl.ai",
+      "enabled": false,
+      "description": "FLUX (Black Forest Labs) - Geração de imagens AI de alta qualidade. Free tier disponível em bfl.ai"
+    },
+
+    "pictify": {
+      "type": "local",
+      "command": "npx",
+      "args": ["-y", "@pictify/mcp-server"],
+      "env": {
+        "PICTIFY_API_KEY": "${PICTIFY_API_KEY}"
+      },
+      "enabled": false,
+      "description": "Pictify - Templates HTML para imagens, GIFs e PDFs. Free tier em pictify.io"
+    },
+
+    "open-design": {
+      "type": "remote",
+      "url": "http://localhost:3333",
+      "enabled": false,
+      "description": "Open Design - Prototipagem visual local. Instale: git clone https://github.com/nexu-io/open-design"
+    },
+
+    // ─── Edição de Imagem ───
+
+    "changeimageto": {
+      "type": "remote",
+      "url": "https://mcp.changeimageto.com",
+      "enabled": false,
+      "description": "ChangeImageTo - 16 ferramentas de edição (resize, crop, upscale, denoise, OCR, etc). Free tier disponível"
+    },
+
+    "chompute-bg-remover": {
+      "type": "remote",
+      "url": "https://mcp.chompute.com/bg-remover",
+      "enabled": false,
+      "description": "Chompute BG Remover - Remoção de fundo de imagens. Free tier disponível"
+    },
+
+    "nano-banana": {
+      "type": "remote",
+      "url": "https://mcp.nanobanana.com",
+      "enabled": false,
+      "description": "Nano Banana - Edição de imagem com Google Gemini. Free tier disponível"
+    },
+
+    // ─── Redes Sociais ───
+
+    "linkedin": {
+      "type": "remote",
+      "url": "https://mcp.linkedin.com",
+      "enabled": false,
+      "description": "LinkedIn MCP - Postar e gerenciar conteúdo no LinkedIn. Requer autenticação OAuth"
+    },
+
+    "twitter": {
+      "type": "remote",
+      "url": "https://mcp.twitter.com",
+      "enabled": false,
+      "description": "Twitter/X MCP - Postar threads e gerenciar conteúdo. Requer API keys"
+    },
+
+    "instagram": {
+      "type": "remote",
+      "url": "https://mcp.instagram.com",
+      "enabled": false,
+      "description": "Instagram MCP - Postar e gerenciar conteúdo visual. Requer autenticação"
+    },
+
+    "facebook": {
+      "type": "remote",
+      "url": "https://mcp.facebook.com",
+      "enabled": false,
+      "description": "Facebook MCP - Postar em páginas e grupos. Requer autenticação"
+    },
+
+    // ─── Produtividade e Organização ───
+
+    "notion": {
+      "type": "remote",
+      "url": "https://mcp.notion.com",
+      "enabled": false,
+      "description": "Notion MCP - Documentação, organização e gestão de projetos. Requer API key"
+    },
+
+    "google-drive": {
+      "type": "remote",
+      "url": "https://mcp.googleapis.com/drive",
+      "enabled": false,
+      "description": "Google Drive MCP - Armazenamento e compartilhamento de arquivos. Requer autenticação OAuth"
+    },
+
+    "slack": {
+      "type": "remote",
+      "url": "https://mcp.slack.com",
+      "enabled": false,
+      "description": "Slack MCP - Comunicação e aprovações. Requer autenticação"
+    },
+
+    // ─── Pesquisa e SEO ───
+
+    "brave-search": {
+      "type": "remote",
+      "url": "https://mcp.brave.com/search",
+      "enabled": false,
+      "description": "Brave Search MCP - Pesquisa web para tendências e concorrência. Free tier disponível"
+    },
+
+    "seocrawl": {
+      "type": "remote",
+      "url": "https://mcp.seocrawl.com",
+      "enabled": false,
+      "description": "SEOcrawl MCP - Análise SEO e performance. Requer API key"
+    },
+
+    "openseo": {
+      "type": "remote",
+      "url": "https://mcp.openseo.com",
+      "enabled": false,
+      "description": "OpenSEO MCP - Dados de keywords e análise de concorrência. Free tier disponível"
+    }
+  },
+
+  // ─── Configurações de Orquestração ───
+  
+  "orchestration": {
+    "defaultOrchestrator": "marketing-orchestrator",
+    "subagents": [
+      "content-creator",
+      "visual-designer",
+      "social-media-manager",
+      "document-generator",
+      "email-marketing"
+    ],
+    "workflowSkills": [
+      "brainstorming-content",
+      "writing-content-plan",
+      "executing-content-plan",
+      "reviewing-content",
+      "finishing-content-project"
+    ],
+    "decisionSkill": "decision-router"
+  }
+}
