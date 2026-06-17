@@ -1,0 +1,44 @@
+# WriteTextAmp Workspace — Codex CLI Configuration
+
+[mcp_servers.docling]
+command = "npx"
+args = ["-y", "@openai/mcp-server-docling"]
+description = "Processamento de documentos"
+
+[mcp_servers.document-generator]
+command = "npx"
+args = ["--yes", "document-generator-mcp@latest"]
+description = "Word + PDF profissional"
+
+[mcp_servers.pdf-toolkit]
+command = "npx"
+args = ["-y", "@aryanbv/pdf-toolkit-mcp"]
+description = "PDF avançado"
+
+[mcp_servers.flux]
+command = "npx"
+args = ["-y", "@bfl/mcp-server-flux"]
+description = "FLUX - Imagens AI"
+env = { FLUX_API_KEY = "${FLUX_API_KEY}" }
+
+[mcp_servers.pictify]
+command = "npx"
+args = ["-y", "@pictify/mcp-server"]
+description = "Pictify - Templates HTML"
+env = { PICTIFY_API_KEY = "${PICTIFY_API_KEY}" }
+
+[mcp_servers.changeimageto]
+command = "npx"
+args = ["-y", "@changeimageto/mcp-server"]
+description = "ChangeImageTo - Edição"
+
+[mcp_servers.chompute]
+command = "npx"
+args = ["-y", "@chompute/mcp-server"]
+description = "Chompute - Remoção de fundo"
+
+[mcp_servers.nano-banana]
+command = "npx"
+args = ["-y", "@nanobanana/mcp-server"]
+description = "Nano Banana - Edição Gemini"
+env = { NANO_BANANA_API_KEY = "${NANO_BANANA_API_KEY}" }

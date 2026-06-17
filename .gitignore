@@ -32,8 +32,9 @@ yarn-error.log*
 .DS_Store
 Thumbs.db
 
-# ─── Backups Antigos ───
-backups/*.tar.gz
+# ─── Metadados de Projeto (local) ───
+.serena/
+.bootstrap-complete
 backups/*.zip
 
 # ─── Arquivos de Sistema ───

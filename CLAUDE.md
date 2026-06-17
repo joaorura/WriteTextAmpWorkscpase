@@ -1,71 +1,120 @@
 # WriteTextAmp Workspace para Claude Code
 
-> **Instruções automáticas carregadas pelo Claude Code ao entrar neste diretório.**
+> **Este arquivo é carregado automaticamente pelo Claude Code ao entrar neste diretório.**
 
----
+## ⚠️ INSTRUÇÃO OBRIGATÓRIA
 
-## 🎯 Visão Geral
+**ANTES DE QUALQUER AÇÃO**, leia:
+- `.opencode/instructions/using-marketing-workspace.instructions.md` — Workflow obrigatório
+- `docs/COSTS-AND-ACCOUNTS.md` — 💰 Custos, contas e free tiers
 
-Você está no **WriteTextAmp Workspace**, um ambiente completo de marketing com orquestração inteligente de agents, subagents e skills.
+## 🎯 Como Trabalhar Neste Workspace
+
+### 1. Bootstrap (se não executado ainda)
+Se `.bootstrap-complete` não existe, guie o usuário:
+```
+Execute: .\bootstrap.ps1
+```
+
+### 2. Projetos Complexos (múltiplos entregáveis)
+```
+@marketing-orchestrator "Campanha completa de lançamento"
+```
+O orquestrador decompõe em tarefas e delega para subagents.
+
+### 3. Tarefas Simples (único entregável)
+Use subagents diretamente:
+- `@content-creator` — Artigos, blogs, whitepapers
+- `@visual-designer` — Imagens, banners, visuais
+- `@social-media-manager` — Posts, calendários
+- `@document-generator` — PDFs, Word, apresentações
+- `@email-marketing` — Sequências, newsletters
+
+### 4. Workflow Obrigatório
+1. `@decision-router` analisa solicitação
+2. `brainstorming-content` se projeto complexo
+3. `writing-content-plan` cria plano
+4. `executing-content-plan` executa com subagents
+5. `reviewing-content` valida qualidade
+6. `finishing-content-project` finaliza
 
 ## 🔧 MCPs Configurados
 
-Este workspace tem MCPs pré-configurados em `.claude/settings.json`:
-
-- **Docling** — Processamento de documentos (PDF, DOCX, imagens)
-- **FLUX** — Geração de imagens AI (Black Forest Labs)
+Configuração em `.claude/settings.json`:
+- **Docling** — Processamento de documentos
+- **FLUX** — Geração de imagens AI
 - **Pictify** — Templates HTML para imagens
-- **Open Design** — Prototipagem visual local
-- **ChangeImageTo** — Edição de imagem (16 ferramentas)
-- **document-generator** — Word + PDF profissional
+- **ChangeImageTo** — Edição de imagem
+- **Chompute** — Remoção de fundo
+- **Nano Banana** — Edição com Gemini
+- **document-generator** — Word + PDF
 - **pdf-toolkit** — PDF avançado
 
-## ⚠️ Instrução Obrigatória
+## 📁 Estrutura de Skills
 
-**LEIA e SIGA** `.opencode/instructions/using-marketing-workspace.instructions.md` — esta instrução define o workflow obrigatório do workspace.
+As skills estão em `.opencode/skills/` — o Claude Code pode acessá-las via filesystem:
 
-## 🚀 Como Usar
-
-### Projetos complexos (múltiplos entregáveis):
 ```
-Vou usar o Marketing Orchestrator para coordenar este projeto.
-
-Primeiro, leia `.opencode/instructions/using-marketing-workspace.instructions.md`
-Depois siga o workflow:
-1. Brainstorming (skill brainstorming-content)
-2. Planejamento (skill writing-content-plan)
-3. Execução via subagents
-4. Revisão (skill reviewing-content)
-5. Finalização (skill finishing-content-project)
+.opencode/skills/
+├── brainstorming-content/SKILL.md
+├── writing-content-plan/SKILL.md
+├── executing-content-plan/SKILL.md
+├── reviewing-content/SKILL.md
+├── finishing-content-project/SKILL.md
+├── decision-router/SKILL.md
+├── materialize-content/SKILL.md
+├── open-design-workflow/SKILL.md
+├── generate-marketing-doc/SKILL.md
+├── create-social-content/SKILL.md
+├── write-email-campaign/SKILL.md
+├── create-presentation/SKILL.md
+└── generate-visual-assets/SKILL.md
 ```
 
-### Tarefas simples (único entregável):
+## 📁 Estrutura de Agents
+
+Agents em `.opencode/agents/`:
+
 ```
-Use os subagents especializados diretamente:
-- Content Creator → artigos, blogs, whitepapers
-- Visual Designer → imagens, banners, visuais
-- Social Media Manager → posts, calendários
-- Document Generator → PDFs, Word, apresentações
-- Email Marketing → sequências, newsletters
+.opencode/agents/
+├── marketing-orchestrator.agent.md
+└── subagents/
+    ├── content-creator.subagent.md
+    ├── visual-designer.subagent.md
+    ├── social-media-manager.subagent.md
+    ├── document-generator.subagent.md
+    └── email-marketing.subagent.md
+```
+
+## 📁 Instruções
+
+Instruções em `.opencode/instructions/`:
+
+```
+.opencode/instructions/
+├── using-marketing-workspace.instructions.md  ⭐ Obrigatória
+├── bootstrap-guide.instructions.md
+├── content-to-visual.instructions.md
+├── copywriting-framework.instructions.md
+├── brand-voice.instructions.md
+├── content-formats.instructions.md
+├── visual-marketing.instructions.md
+├── git-workflow.instructions.md
+└── installation-guide.instructions.md
 ```
 
 ## 📚 Documentação
 
 - `README.md` — Visão geral
 - `WORKSPACE.md` — Guia completo
-- `docs/COSTS-AND-ACCOUNTS.md` — Custos e contas
-- `docs/ORCHESTRATOR-GUIDE.md` — Guia do orquestrador
-- `docs/USER-GUIDE.md` — Guia do usuário
-- `docs/MCP-CONFIGURATION.md` — Configuração de MCPs
-
-## 💰 Informações de Custo
-
-Leia `docs/COSTS-AND-ACCOUNTS.md` para entender:
-- Quais serviços são gratuitos
-- Quais precisam de conta
-- Limites do free tier
-- Custos de planos pagos
+- `docs/COSTS-AND-ACCOUNTS.md` — 💰 Custos e contas
+- `docs/ORCHESTRATOR-GUIDE.md` — Orquestrador
+- `docs/USER-GUIDE.md` — Usuário
+- `docs/MCP-CONFIGURATION.md` — Config MCPs
+- `docs/MULTI-CLI-SUPPORT.md` — Suporte multi-CLI
+- `docs/DOCLING-GUIDE.md` — Docling
+- `docs/OPEN-DESIGN-GUIDE.md` — Open Design
 
 ---
 
-**Workspace de marketing pronto para uso! Siga as instruções obrigatórias para garantir qualidade.**
+**Siga as instruções obrigatórias. Máxima qualidade em cada entrega! 🚀**

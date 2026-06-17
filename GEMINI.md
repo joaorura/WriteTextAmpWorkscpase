@@ -1,55 +1,76 @@
 # WriteTextAmp Workspace para Gemini CLI
 
-> **Instruções automáticas carregadas pelo Gemini CLI ao entrar neste diretório.**
+> **Este arquivo é carregado automaticamente pelo Gemini CLI ao entrar neste diretório.**
 
----
+## ⚠️ INSTRUÇÃO OBRIGATÓRIA
 
-## 🎯 Visão Geral
+**ANTES DE QUALQUER AÇÃO**, leia:
+- `.opencode/instructions/using-marketing-workspace.instructions.md` — Workflow obrigatório
+- `docs/COSTS-AND-ACCOUNTS.md` — 💰 Custos, contas e free tiers
 
-Você está no **WriteTextAmp Workspace**, um ambiente de marketing com orquestração inteligente.
+## 🎯 Como Trabalhar Neste Workspace
+
+### 1. Bootstrap (se não executado ainda)
+Se `.bootstrap-complete` não existe, guie o usuário:
+```
+Execute: .\bootstrap.ps1
+```
+
+### 2. Projetos Complexos
+Use o workflow completo:
+1. `brainstorming-content` para refinar escopo
+2. `writing-content-plan` para planejar
+3. Execute com subagents especializados
+4. `reviewing-content` para validar
+5. `finishing-content-project` para finalizar
+
+### 3. Tarefas Simples
+Use subagents:
+- `content-creator` → Artigos, blogs
+- `visual-designer` → Imagens, banners
+- `social-media-manager` → Posts
+- `document-generator` → PDFs, Word
+- `email-marketing` → Emails
 
 ## 🔧 Ferramentas Configuradas
 
-Este workspace tem ferramentas pré-configuradas em `gemini-extension.json`:
+Configuração em `gemini-extension.json` — ao iniciar o Gemini CLI, use:
+```
+gemini extensions install .
+```
 
-- **Docling** — Processamento de documentos
-- **FLUX** — Geração de imagens AI
-- **Pictify** — Templates HTML para imagens
-- **Open Design** — Prototipagem visual
-- **ChangeImageTo** — Edição de imagem
+Ferramentas disponíveis:
+- **docling** — Processamento de documentos
+- **flux** — Geração de imagens AI
+- **pictify** — Templates HTML
+- **changeimageto** — Edição de imagem
+- **chompute** — Remoção de fundo
+- **nano-banana** — Edição Gemini
 - **document-generator** — Word + PDF
 - **pdf-toolkit** — PDF avançado
 
-## ⚠️ Instrução Obrigatória
+## 📁 Estrutura do Workspace
 
-**LEIA e SIGA** `.opencode/instructions/using-marketing-workspace.instructions.md` — esta instrução define o workflow obrigatório.
+```
+.opencode/
+├── skills/       → Skills (workflow + produção)
+├── agents/       → Agents + subagents
+└── instructions/ → Instruções obrigatórias
 
-## 🚀 Como Usar
-
-### Projetos complexos:
-1. Leia `using-marketing-workspace.instructions.md`
-2. Use `brainstorming-content` para refinar escopo
-3. Use `writing-content-plan` para planejar
-4. Execute com subagents: `content-creator`, `visual-designer`, etc.
-5. Revise com `reviewing-content`
-6. Finalize com `finishing-content-project`
-
-### Tarefas simples:
-Use subagents diretamente:
-- `content-creator` → artigos
-- `visual-designer` → imagens
-- `social-media-manager` → posts
-- `document-generator` → PDFs
-- `email-marketing` → emails
+projetos/         → Projetos isolados por cliente
+_templates/       → Templates reutilizáveis
+scripts/          → Scripts de instalação
+docs/             → Documentação
+```
 
 ## 📚 Documentação
 
 - `README.md` — Visão geral
 - `WORKSPACE.md` — Guia completo
-- `docs/COSTS-AND-ACCOUNTS.md` — 💰 Custos e contas
+- `docs/COSTS-AND-ACCOUNTS.md` — 💰 Custos
 - `docs/ORCHESTRATOR-GUIDE.md` — Orquestrador
-- `docs/USER-GUIDE.md` — Usuário
+- `docs/MULTI-CLI-SUPPORT.md` — Multi-CLI
 
 ---
 
-**Workspace de marketing pronto para uso! 🚀**
+**Siga as instruções obrigatórias. Máxima qualidade! 🚀**
