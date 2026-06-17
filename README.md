@@ -37,16 +37,18 @@ O bootstrap configura automaticamente todo o workspace:
 
 ### Passo 2: Configure as Contas e API Keys
 
-**⚠️ IMPORTANTE:** Antes de continuar, leia [docs/COSTS-AND-ACCOUNTS.md](docs/COSTS-AND-ACCOUNTS.md) para entender:
-- Quais serviços precisam de conta
-- O que é gratuito vs pago
-- Limites do free tier
-- Como criar contas e obter API keys
+**⚠️ IMPORTANTE:** Antes de continuar, leia sobre custos reais:
+
+| Documento | Descrição |
+|-----------|-----------|
+| **[docs/REAL-COSTS.md](docs/REAL-COSTS.md)** | 💰 **LEIA PRIMEIRO** — O que REALMENTE custa dinheiro |
+| [docs/COSTS-AND-ACCOUNTS.md](docs/COSTS-AND-ACCOUNTS.md) | Guia completo de custos e contas |
 
 **Resumo rápido:**
-- ✅ **100% Gratuitos (sem conta):** document-generator, pdf-toolkit, Docling, Open Design
-- ⚠️ **Free Tier (precisa conta):** FLUX, Pictify, ChangeImageTo, Chompute, Nano Banana, Brave Search, SEOcrawl, OpenSEO
-- ✅ **Gratuitos com OAuth:** LinkedIn, Instagram, Facebook, Google Drive, Slack
+- ✅ **100% Grátis (sem conta):** document-generator, pdf-toolkit, Docling, Open Design
+- ⚠️ **Free Tier (precisa conta grátis):** FLUX (~100 imagens/mês), Brave Search (2000 queries/mês)
+- 💲 **Pago:** Twitter API ($100/mês), SEOcrawl ($29/mês), OpenSEO ($19/mês)
+- 💡 **Dica:** Comece 100% grátis. Só pague depois de usar e ver o que precisa.
 
 ### Passo 3: Crie Seu Primeiro Projeto
 
